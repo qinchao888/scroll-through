@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>demo-all3</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+    }
+    p {
+      padding: 20px 0;
+    }
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+    .modal-mask {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, .6);
+    }
+    .modal-content {
+      position: absolute;
+      width: 200px;
+      height: 400px;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      background: #fff;
+      overflow: auto;
+    }
+    button {
+      background: seagreen;
+      width: 100px;
+      height: 60px;
+      text-align: center;
+      color: #fff;
+      font-size: 24px;
+      outline: none;
+      border: none;
+    }
+    img {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <p v-for="item in 20">{{item}}</p>
+    <img src="./images/1.jpg"/>
+    <img src="./images/2.jpg"/>
+    <button @click="modalStatus=true">show</button>
+    <img src="./images/3.jpg"/>
+    <div class="modal" v-if="modalStatus">
+      <div class="modal-mask"></div>
+      <div class="modal-content">
+        <p v-for="item in 20">这是内部的内容{{item}}</p>
+        <button @click="modalStatus=false">hide</button>
+      </div>
+    </div>
+  </div>
+</body>
+<script>
+new Vue({
+  el: '#app',
+  data: {
+    modalStatus: false,
+  },
+  watch: {
+    modalStatus (val) {
+      const body = document.body
+      if (val) {
+        body.style.overflow = 'hidden'
+      } else {
+        body.style.overflow = 'visible'
+      }
+    }
+  }
+})
+</script>
+</html>

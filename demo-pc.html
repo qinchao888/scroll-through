@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>demo-pc</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+    }
+    p {
+      padding: 20px 0;
+    }
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+    .modal-mask {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, .6);
+    }
+    .modal-content {
+      position: absolute;
+      width: 200px;
+      height: 400px;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      background: #fff;
+    }
+    button {
+      background: seagreen;
+      width: 100px;
+      height: 60px;
+      text-align: center;
+      color: #fff;
+      font-size: 24px;
+      outline: none;
+      border: none;
+    }
+    img {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <p v-for="item in 20">{{item}}</p>
+    <img src="./images/1.jpg"/>
+    <img src="./images/2.jpg"/>
+    <button @click="modalStatus=true">show</button>
+    <img src="./images/3.jpg"/>
+    <div class="modal" ref="modal" @mousewheel.prevent id="modal" v-show="modalStatus"><!-- 方式一 -->
+      <div class="modal-mask"></div>
+      <div class="modal-content">
+        <p>这是内部的内容1</p>
+        <p>这是内部的内容2</p>
+        <button @click="modalStatus=false">hide</button>
+      </div>
+    </div>
+  </div>
+</body>
+<script>
+new Vue({
+  el: '#app',
+  data: {
+    modalStatus: false,
+  },
+  mounted () {
+    // this.$refs.modal.addEventListener('mousewheel', function (e) {
+    //   e.preventDefault();
+    // }, false);
+  }
+})
+</script>
+</html>
